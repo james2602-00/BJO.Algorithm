@@ -1,0 +1,30 @@
+import sys
+
+n = int(input())
+A = list(map(int,sys.stdin.readline().split()))
+dp= [0]*n
+dp[0]=A[0]
+
+for now in range(1,n):
+  ret = 0
+  for a in range(now):
+    if A[a]<A[now]:
+      ret = max(ret,dp[a])
+  dp[now]=A[now]+ret
+
+print(max(dp))
+
+"""
+import sys
+
+N = int(sys.stdin.readline())
+arr = [0] * 1001
+sequence = list(map(int, sys.stdin.readline().split()))
+
+for seq in sequence:
+    arr[seq] = max(arr[:seq]) + seq
+
+sys.stdout.write(str(max(arr)))
+"""
+
+#max(arr[:seq])와 같은 슬라이싱으로 for문 사용을 줄여 간단한 코드 작성가능
